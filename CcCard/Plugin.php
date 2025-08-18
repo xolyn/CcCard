@@ -4,7 +4,7 @@
  * 
  * @package CcCard
  * @author uygnil
- * @version 1.0.2
+ * @version 1.0.3
  * @link https://zhoulingyu.net
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
@@ -103,7 +103,13 @@ class CcCard_Plugin implements Typecho_Plugin_Interface
      */
     public static function injectAtArticleEnd($content, $archive)
     {
-        if (!$archive->is('single')) return $content;
+
+        // 检查 article 是否有 no-CcCard 类
+        if (str_contains($content, "<!--noCcCard-->")) {
+            return $content;
+        }
+        
+		if (!$archive->is('single') || $archive->is('page')) return $content;
 
         $opts = Helper::options()->plugin('CcCard');
         
@@ -131,8 +137,7 @@ class CcCard_Plugin implements Typecho_Plugin_Interface
         
         $cardItems[] = '<li>版权声明：本文采用 <a href="'.htmlspecialchars($licenseUrl).'">'.htmlspecialchars($license).'</a> 协议进行许可</li>';
 
-        $card = '<div class="cc-card" cc-card-info="CcCard Plugin v1.0.1, powered by uygnil: zhoulingyu.net"><ul>'.implode('', $cardItems).'</ul></div>';
-
+		$card = '<div class="cc-card" cc-card-info="CcCard Plugin v1.0.1, powered by uygnil: zhoulingyu.net"><ul>'.implode('', $cardItems).'</ul></div>';
         $strict = isset($opts->strictArticle) ? ($opts->strictArticle === '1') : true;
 
         if ($strict && false !== stripos($content, '</article>')) {
