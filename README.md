@@ -6,7 +6,7 @@ Clone to local and move the folder `CcCard` to your plugin folder.
 If you are using docker typecho and can't see plugin name and description, etc in the plugin managment page, make sure plugin folder and all files within have all privilegdes by running:
 
 ```bash
-chmod -R \path\to\plugin\folder 777
+chmod -R \path\to\plugin\folder 775
 ```
 
 Enable it and you can customize config:
@@ -22,4 +22,5 @@ Enable it and you can customize config:
 You can customize the style of the card in `CcCard/assets/style.css`
 
 ## Exclusion 
-If you don't want Cc Card to be displayed on the page, simply add `<!--noCcCard-->` comment on the page specifically.
+If you don't want Cc Card to be displayed on the page, simply add the comment `<!--noCcCard-->` on the page specifically.
+
