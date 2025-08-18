@@ -20,3 +20,6 @@ Enable it and you can customize config:
 ### Component CSS
 
 You can customize the style of the card in `CcCard/assets/style.css`
+
+## Exclusion 
+If you don't want Cc Card to be displayed on the page, simply add `<!--noCcCard-->` comment on the page specifically.
